@@ -1,0 +1,44 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    background-color: #676767;
+    height: 150px;
+}
+
+#main-container {
+    position: relative;
+    min-height: 100%;
+}
+
+#content-container {
+    padding: 10px 10px 160px;
+}
+
+.nav-text {
+    color: #003b6d;
+    font-weight: bold;
+    font-size: 1.1rem;
+    line-height: 60px;
+}
+
+.footer-logos {
+    color: #EBEDF3
+}
+
+.form-floating-group input {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.citas-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 800px;
+}
