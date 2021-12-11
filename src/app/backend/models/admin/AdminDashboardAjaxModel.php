@@ -46,7 +46,7 @@ class AdminDashboardAjaxModel extends Model
                 ->from(EspecialidadEntity::getTableName())
                 ->asObject(EspecialidadEntity::class)
                 ->innerJoin(EspecialidadEntity::getJoin(EspecialidadEntity::DOCTOR_ESPECIALIDAD))
-                ->where('doctorEspecialidadDoctorID', 2)
+                ->where('doctorEspecialidadDoctorID', $doctorID)
                 ->fetchAll();
         }
         catch (FluentPdoException $e)

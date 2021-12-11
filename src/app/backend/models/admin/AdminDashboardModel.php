@@ -5,6 +5,7 @@ namespace Shield1739\UTP\CitasCss\app\backend\models\admin;
 use phpDocumentor\Reflection\Types\This;
 use Shield1739\UTP\CitasCss\app\entities\CitaEntity;
 use Shield1739\UTP\CitasCss\app\entities\ClinicaEntity;
+use Shield1739\UTP\CitasCss\app\entities\CuentaEntity;
 use Shield1739\UTP\CitasCss\app\entities\DoctorEntity;
 use Shield1739\UTP\CitasCss\app\entities\EspecialidadEntity;
 use Shield1739\UTP\CitasCss\app\entities\PacienteEntity;
@@ -212,6 +213,117 @@ class AdminDashboardModel extends Model
         }
     }
 
+    // Doctor
+
+    public function insertDoctor($correo, $cedula, $nombre, $apellido, $contrasena)
+    {
+        $cuenta = new CuentaEntity();
+
+        $cuenta->cuentaCorreo = $correo;
+        $cuenta->cuentaCedula = $cedula;
+        $cuenta->cuentaNombre = $nombre;
+        $cuenta->cuentaApellido = $apellido;
+        $cuenta->cuentaContrasenaHash = password_hash($contrasena, PASSWORD_BCRYPT);
+        $cuenta->cuentaTipoID = 3;
+
+
+        $cuentaAttributes = ['cuentaCorreo', 'cuentaCedula', 'cuentaNombre', 'cuentaApellido', 'cuentaContrasenaHash', 'cuentaTipoID'];
+
+        try
+        {
+            $id = $this->pdoUtils->insertEntity($cuenta, $cuentaAttributes);
+
+            $doctor = new DoctorEntity();
+            $doctor->doctorCuentaID = $id;
+
+            $this->pdoUtils->insertEntity($doctor, ['doctorCuentaID']);
+            return true;
+        }
+        catch (FluentPdoException $e)
+        {
+            return false;
+        }
+    }
+
+    public function editDoctor($id, $cuentaID, $correo, $cedula, $nombre, $apellido, $contrasena, $clinicaID)
+    {
+        var_dump($id, $cuentaID, $correo, $cedula, $nombre, $apellido, $clinicaID);
+
+        $hashedPassword = password_hash($contrasena, PASSWORD_BCRYPT);
+
+        $set = [
+            'cuentaCorreo' => $correo,
+            'cuentaCedula' => $cedula,
+            'cuentaNombre' => $nombre,
+            'cuentaApellido' => $apellido,
+            'cuentaContrasenaHash' => $hashedPassword
+            ];
+
+        $fluent = $this->pdoUtils->getFluentPdoBuilder();
+
+        try
+        {
+            $fluent->update(CuentaEntity::getTableName())->set($set)->where(CuentaEntity::getPrimaryKey(), $cuentaID)->execute();
+            $fluent->update(DoctorEntity::getTableName())->set(['doctorClinicaID' => $clinicaID])->where(DoctorEntity::getPrimaryKey(), $id)->execute();
+            return true;
+        }
+        catch (FluentPdoException $e)
+        {
+            return false;
+        }
+
+    }
+
+    public function deleteDoctor($id)
+    {
+        $fluent = $this->pdoUtils->getFluentPdoBuilder();
+
+        try
+        {
+            $fluent->delete(DoctorEntity::getTableName())->where(DoctorEntity::getPrimaryKey(), $id)->execute();
+            return true;
+        }
+        catch (FluentPdoException $e)
+        {
+            return false;
+        }
+    }
+
+    public function addDoctorEspecialidad(mixed $doctorID, mixed $especialidadID)
+    {
+        $fluent = $this->pdoUtils->getFluentPdoBuilder();
+
+        $values =
+            ['doctorEspecialidadDoctorID' => $doctorID, 'doctorEspecialidadEspecialidadID'=>$especialidadID];
+        try
+        {
+            $fluent->insertInto('doctor_especialidad')->values($values)->execute();
+            return true;
+        }
+        catch (FluentPdoException $e)
+        {
+            return false;
+        }
+    }
+
+    public function deleteDoctorEspecialidad(mixed $doctorID, mixed $especialidadID)
+    {
+        $fluent = $this->pdoUtils->getFluentPdoBuilder();
+
+        try
+        {
+            $fluent->delete('doctor_especialidad')
+                ->where(['doctorEspecialidadDoctorID' => $doctorID,
+                    'doctorEspecialidadEspecialidadID'=>$especialidadID])
+                ->execute();
+            return true;
+        }
+        catch (FluentPdoException $e)
+        {
+            return false;
+        }
+    }
+
     /**
      * @inheritDoc
      */
@@ -236,4 +348,5 @@ class AdminDashboardModel extends Model
     {
         return [];
     }
+
 }

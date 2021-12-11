@@ -10,19 +10,25 @@ function toggleModal(bsTarget)
     modal.toggle();
 }
 
-function addTableRowCell(row, txt)
+function addTableRowCell(row, txt, classname = '')
 {
     var cell = row.insertCell();
+    cell.className = classname;
     var text = document.createTextNode(txt);
     cell.appendChild(text);
 }
 
-function createDeleteButton(context, func) {
-    var button = document.createElement("input");
-    button.type = "button";
-    button.className = "btn btn-danger align-self-end"
-    button.value = 'Borrar'
-    //button.onclick = func;
+function createDeleteButton(context, value) {
+    var button = document.createElement("button");
+    button.type = "submit";
+    button.name = 'deleteDoctorEspecialidad';
+    button.className = "btn btn-danger p-2"
+    button.value = value;
+
+    var icon = document.createElement('i');
+    icon.className = 'bi bi-trash-fill';
+    button.appendChild(icon);
+
     context.appendChild(button);
 }
 
@@ -122,9 +128,6 @@ function openDoctorModal(button)
             doctorNombreInput = document.getElementById('doctorEditModalDoctorNombre');
             doctorApellidoInput = document.getElementById('doctorEditModalDoctorApellido');
 
-            doctorClinicaIdInput = document.getElementById('doctorEditModalDoctorClinicaID');
-            doctorClinicaIdInput.value = clinicaID;
-
             $.ajax
             ({
                 url: "/admin/dashboard/ajax",
@@ -156,23 +159,35 @@ function openDoctorModal(button)
                     clinicaSelect.selectpicker('refresh');
 
                     // Populate Especialidad
-                    let doctorEspecialidadTable = document.getElementById('doctorEspecialidadTable').getElementsByTagName('tbody')[0];
+                    let newTbody = document.createElement('tbody');
 
                     i = 1;
                     $.each(parsedData['especialidades'], function (key, name)
                     {
                         // Insert a row at the end of table
-                        var newRow = doctorEspecialidadTable.insertRow();
+                        var newRow = newTbody.insertRow();
 
-                        addTableRowCell(newRow, i);
-                        addTableRowCell(newRow, name['especialidadID']);
-                        addTableRowCell(newRow, name['especialidadNombre']);
+                        addTableRowCell(newRow, i, 'align-middle');
+                        addTableRowCell(newRow, name['especialidadID'], 'align-middle');
+                        addTableRowCell(newRow, name['especialidadNombre'], 'align-middle');
 
                         var cell = newRow.insertCell();
-                        createDeleteButton(cell);
+                        cell.className = 'text-end';
+                        createDeleteButton(cell, name['especialidadID']);
 
                         i++;
                     });
+
+                    let oldTbody = document.getElementById('doctorEspecialidadTable').getElementsByTagName('tbody')[0];
+                    oldTbody.parentNode.replaceChild(newTbody, oldTbody);
+
+                    let especialidadSelect = $('#doctorEditModalDoctorEspecialidad');
+                    $.each(parsedData['allEspecialidades'], function (key, name)
+                    {
+                        especialidadSelect.append(new Option(name['especialidadNombre'], name['especialidadID']));
+                    });
+
+                    especialidadSelect.selectpicker('refresh');
                 }
             });
 

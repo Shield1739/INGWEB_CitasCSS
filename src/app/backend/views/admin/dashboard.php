@@ -556,12 +556,6 @@
                                     </div>
                                 </div>
                                 <div class="row pb-3">
-                                    <div class="col-6">
-                                        <label for="doctorEditModalDoctorClinicaID" class="h5">Clinica ID</label>
-                                        <input id="doctorEditModalDoctorClinicaID" name="doctorClinicaID" value="" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="row pb-3">
                                     <div class="col">
                                         <h1 class="h5">
                                             Clinica
@@ -570,26 +564,10 @@
                                     </div>
                                 </div>
                                 <div class="row pb-3">
-                                    <div class="col-6">
-                                        <label for="doctorEditModalDoctorEspecialidadID" class="h5">Especialidad ID</label>
-                                        <input id="doctorEditModalDoctorEspecialidadID" name="doctorClinicaID" value="" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="row pb-3">
                                     <div class="col">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <h1 class="h5">
-                                                    Especialidad
-                                                </h1>
-                                            </div>
-                                            <div class="col-6 text-end">
-                                                <button type="button" class="btn btn-primary p-1" data-bs-target="#doctorEspecialidadCreateModal"
-                                                        data-mode="create" onclick="openDoctorEspecialidadModal(this)">
-                                                    <i class="bi bi-plus-circle fs-5"></i>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        <h1 class="h5">
+                                            Especialidades
+                                        </h1>
                                         <table id="doctorEspecialidadTable" class="table table-striped">
                                             <thead>
                                             <tr>
@@ -603,6 +581,17 @@
 
                                             </tbody>
                                         </table>
+                                    </div>
+                                </div>
+                                <div class="row pb-3">
+                                    <div class="col pb-4">
+                                        <h1 class="h5">
+                                            Agregar Especialidad
+                                        </h1>
+                                        <select id="doctorEditModalDoctorEspecialidad" class="selectpicker form-control" name="especialidadID" data-actions-box="true"></select>
+                                    </div>
+                                    <div class="d-block">
+                                        <button name="addDoctorEspecialidad" type="submit" class="btn btn-primary">Agregar Especialidad</button>
                                     </div>
                                 </div>
                             </div>

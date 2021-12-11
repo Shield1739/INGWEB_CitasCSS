@@ -32,6 +32,7 @@ class AdminDashboardAjaxController extends BackendController
                 $data['clinicas'] = $this->model->fetchAllClinicas();
                 $data['clinica'] = $this->ajaxModel->fetchDoctorClinica($requestData['doctorID']);
                 $data['especialidades'] = $this->ajaxModel->fetchDoctorEspecialidades($requestData['doctorID']);
+                $data['allEspecialidades'] = $this->model->fetchAllEspecialidades();
 
                 echo json_encode($data);
                 break;

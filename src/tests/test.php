@@ -30,11 +30,11 @@ $pdo = new PDO("mysql:host=localhost;port=3306;dbname=citascss", "root", "sa");
 $fluent = new Query($pdo);
 
 $x = $fluent
-    ->from(EspecialidadEntity::getTableName())
-    ->asObject(EspecialidadEntity::class)
-    ->innerJoin(EspecialidadEntity::getJoin(EspecialidadEntity::DOCTOR_ESPECIALIDAD))
-    ->where('doctorEspecialidadDoctorID', 2)
-    ->fetchAll();
+    ->from(DoctorEntity::getTableName())
+    ->select('doctor_especialidad.*')
+    ->where(DoctorEntity::getPrimaryKey(), 1)
+    ->innerJoin(DoctorEntity::getJoin(DoctorEntity::DOCTOR_ESPECIALIDAD))
+    ->fetch();
 
 var_dump($x);
 

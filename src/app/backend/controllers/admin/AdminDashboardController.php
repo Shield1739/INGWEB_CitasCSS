@@ -29,11 +29,11 @@ class AdminDashboardController extends BackendController
         {
             $this->params[$this->session::SUCCESS_KEY] = 'Clinica Creada Exitosamente';
         }
-        else if (isset($data['editClinica']) &&  $this->model->editClinica($data['clinicaID'], $data['clinicaNombre'], $data['clinicaDireccion']))
+        else if (isset($data['editClinica']) && $this->model->editClinica($data['clinicaID'], $data['clinicaNombre'], $data['clinicaDireccion']))
         {
             $this->params[$this->session::SUCCESS_KEY] = 'Clinica Editada Exitosamente';
         }
-        else if (isset($data['deleteClinica']) &&  $this->model->deleteClinica($data['clinicaID']))
+        else if (isset($data['deleteClinica']) && $this->model->deleteClinica($data['clinicaID']))
         {
             $this->params[$this->session::SUCCESS_KEY] = 'Clinica Borrada Exitosamente';
         }
@@ -42,15 +42,35 @@ class AdminDashboardController extends BackendController
         {
             $this->params[$this->session::SUCCESS_KEY] = 'Especialidad Creada Exitosamente';
         }
-        else if (isset($data['editEspecialidad']) &&  $this->model->editEspecialidad($data['especialidadID'], $data['especialidadNombre']))
+        else if (isset($data['editEspecialidad']) && $this->model->editEspecialidad($data['especialidadID'], $data['especialidadNombre']))
         {
             $this->params[$this->session::SUCCESS_KEY] = 'Especialidad Editada Exitosamente';
         }
-        else if (isset($data['deleteEspecialidad']) &&  $this->model->deleteEspecialidad($data['especialidadID']))
+        else if (isset($data['deleteEspecialidad']) && $this->model->deleteEspecialidad($data['especialidadID']))
         {
             $this->params[$this->session::SUCCESS_KEY] = 'Especialidad Borrada Exitosamente';
         }
         // Doctores
+        else if (isset($data['createDoctor']) && $this->model->insertDoctor($data['doctorCorreo'], $data['doctorCedula'], $data['doctorNombre'], $data['doctorApellido'], $data['doctorContrasena']))
+        {
+            $this->params[$this->session::SUCCESS_KEY] = 'Doctor Creada Exitosamente';
+        }
+        else if (isset($data['editDoctor']) && $this->model->editDoctor($data['doctorID'], $data['doctorCuentaID'], $data['doctorCorreo'], $data['doctorCedula'], $data['doctorNombre'], $data['doctorApellido'], $data['doctorContrasena'], $data['clinicaID']))
+        {
+            $this->params[$this->session::SUCCESS_KEY] = 'Doctor Editado Exitosamente';
+        }
+        else if (isset($data['deleteDoctor']) && $this->model->deleteDoctor($data['doctorID']))
+        {
+            $this->params[$this->session::SUCCESS_KEY] = 'Doctor Borrada Exitosamente';
+        }
+        else if (isset($data['addDoctorEspecialidad']) && $this->model->addDoctorEspecialidad($data['doctorID'], $data['especialidadID']))
+        {
+            $this->params[$this->session::SUCCESS_KEY] = 'Doctor Borrada Exitosamente';
+        }
+        else if (isset($data['deleteDoctorEspecialidad']) && $this->model->deleteDoctorEspecialidad($data['doctorID'], $data['deleteDoctorEspecialidad']))
+        {
+            $this->params[$this->session::SUCCESS_KEY] = 'Doctor Borrada Exitosamente';
+        }
 
         $this->model->loadCounts();
     }

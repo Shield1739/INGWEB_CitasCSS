@@ -7,20 +7,20 @@ class s003_initData
         $password = password_hash('aa', PASSWORD_BCRYPT);
         return /** @lang SQL */ "
             INSERT INTO cuenta (cuentaTipoID, cuentaCorreo, cuentaCedula, cuentaContrasenaHash, cuentaNombre, cuentaApellido) 
-                VALUE (1, 'sa@sa.a', 'sa', '$password', 'NombreSA', 'ApellidoSA');
+                VALUE (1, 'sa@sa.a', '0-0-0', '$password', 'Admin', 'Admin');
             
             INSERT INTO cuenta (cuentaTipoID, cuentaCorreo, cuentaCedula, cuentaContrasenaHash, cuentaNombre, cuentaApellido) 
-                VALUE (2, 'paciente1@sa.a', 'p1', '$password', 'NombreP1', 'ApellidoP1'); 
+                VALUE (2, 'luis.villalaz1@utp.ac.pa', '1-1-1', '$password', 'Juan', 'Valdez'); 
             INSERT INTO paciente (pacienteCuentaID, pacienteNSS, pacienteNumeroContacto, pacienteFechaNacimiento) 
-                VALUE (LAST_INSERT_ID(), 'p1', '12345678', '2000-01-01');
+                VALUE (LAST_INSERT_ID(), '1-1-1', '12345678', '2000-01-01');
             INSERT INTO cuenta (cuentaTipoID, cuentaCorreo, cuentaCedula, cuentaContrasenaHash, cuentaNombre, cuentaApellido) 
-                VALUE (2, 'paciente2@sa.a', 'p2', '$password', 'NombreP2', 'ApellidoP2'); 
+                VALUE (2, 'paciente2@sa.a', '1-1-2', '$password', 'NombreP2', 'ApellidoP2'); 
             INSERT INTO paciente (pacienteCuentaID, pacienteNSS, pacienteNumeroContacto, pacienteFechaNacimiento) 
-                VALUE (LAST_INSERT_ID(), 'p2', '12345678', '2000-02-02');
+                VALUE (LAST_INSERT_ID(), '1-1-2', '698745123', '2000-02-02');
             INSERT INTO cuenta (cuentaTipoID, cuentaCorreo, cuentaCedula, cuentaContrasenaHash, cuentaNombre, cuentaApellido) 
-                VALUE (2, 'paciente3@sa.a', 'p3', '$password', 'NombreP3', 'ApellidoP3'); 
+                VALUE (2, 'paciente3@sa.a', '1-1-3', '$password', 'NombreP3', 'ApellidoP3'); 
             INSERT INTO paciente (pacienteCuentaID, pacienteNSS, pacienteNumeroContacto, pacienteFechaNacimiento) 
-                VALUE (LAST_INSERT_ID(), 'p3', '12345678', '2000-02-02');
+                VALUE (LAST_INSERT_ID(), '1-1-3', '2233445566', '2000-02-02');
 
             INSERT INTO cuenta (cuentaTipoID, cuentaCorreo, cuentaCedula, cuentaContrasenaHash, cuentaNombre, cuentaApellido) 
                VALUE (3, 'doctor1@sa.a', '8-999-1', '$password', 'Manuel', 'Osas'); 
