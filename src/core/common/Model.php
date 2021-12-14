@@ -112,6 +112,8 @@ abstract class Model
      */
     public function validate(): bool
     {
+        $this->errors = [];
+
         foreach ($this->getRules() as $block => $ruleBlock)
         {
             foreach ($ruleBlock as $attr => $rules)
@@ -275,4 +277,13 @@ abstract class Model
         $errors = $this->errors[$attribute] ?? [];
         return $errors[0] ?? null;
     }
+
+    /**
+     * @return \Shield1739\UTP\CitasCss\app\PDOUtils
+     */
+    public function getPdoUtils(): PDOUtils
+    {
+        return $this->pdoUtils;
+    }
+
 }

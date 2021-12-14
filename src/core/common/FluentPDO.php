@@ -67,4 +67,14 @@ class FluentPDO
         $fluent = $this->getFluentPdoBuilder();
         return $fluent->insertInto($entity::getTableName(), $values)->execute();
     }
+
+    public function beginTransaction()
+    {
+        $this->pdo->beginTransaction();
+    }
+
+    public function rollback()
+    {
+        $this->pdo->rollBack();
+    }
 }

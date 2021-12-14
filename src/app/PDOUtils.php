@@ -73,23 +73,6 @@ class PDOUtils extends FluentPDO
         }
     }
 
-    public function getCitaPacienteIdFromCitaID(int $citaID)
-    {
-        $fluent = $this->getFluentPdoBuilder();
-        try
-        {
-            return $fluent
-                ->from(CitaEntity::getTableName())
-                ->asObject(CitaEntity::class)
-                ->where('citaPacienteID', $citaID)
-                ->fetch(CitaEntity::getPrimaryKey());
-        }
-        catch (FluentPdoException $e)
-        {
-            return null;
-        }
-    }
-
     public function fetchCodigoSeguimientoFromCitaID($citaID)
     {
         $fluent = $this->getFluentPdoBuilder();
@@ -98,7 +81,7 @@ class PDOUtils extends FluentPDO
             return $fluent
                 ->from(CitaEntity::getTableName())
                 ->asObject(CitaEntity::class)
-                ->where('citaPacienteID', $citaID)
+                ->where('citaID', $citaID)
                 ->fetch('citaCodigoSeguimineto');
         }
         catch (FluentPdoException $e)

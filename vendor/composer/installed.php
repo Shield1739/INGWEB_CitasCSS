@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'f5bc002c4b54cf8422e005d1eb8168184cc2ba3f',
         'name' => 'shield1739/citas-css',
         'dev' => true,
     ),
@@ -113,12 +113,12 @@
             'dev_requirement' => false,
         ),
         'phpspec/prophecy' => array(
-            'pretty_version' => '1.14.0',
-            'version' => '1.14.0.0',
+            'pretty_version' => 'v1.15.0',
+            'version' => '1.15.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpspec/prophecy',
             'aliases' => array(),
-            'reference' => 'd86dfc2e2a3cd366cee475e52c6bb3bbc371aa0e',
+            'reference' => 'bbcd7380b0ebf3961ee21409db7b38bc31d69a13',
             'dev_requirement' => true,
         ),
         'phpunit/php-code-coverage' => array(
@@ -320,12 +320,12 @@
             'dev_requirement' => true,
         ),
         'shield1739/citas-css' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'f5bc002c4b54cf8422e005d1eb8168184cc2ba3f',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(
@@ -365,12 +365,12 @@
             'dev_requirement' => true,
         ),
         'vlucas/phpdotenv' => array(
-            'pretty_version' => 'v5.4.0',
-            'version' => '5.4.0.0',
+            'pretty_version' => 'v5.4.1',
+            'version' => '5.4.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../vlucas/phpdotenv',
             'aliases' => array(),
-            'reference' => 'd4394d044ed69a8f244f3445bcedf8a0d7fe2403',
+            'reference' => '264dce589e7ce37a7ba99cb901eed8249fbec92f',
             'dev_requirement' => false,
         ),
         'webmozart/assert' => array(

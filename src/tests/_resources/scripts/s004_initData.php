@@ -22,7 +22,13 @@ INSERT INTO cita (citaEstadoID, citaDoctorID, citaPacienteID, citaBloqueHoraID, 
 INSERT INTO cita (citaEstadoID, citaDoctorID, citaPacienteID, citaBloqueHoraID, citaCodigoSeguimineto, citaFecha, citaMotivo) 
                 VALUES (1, 2, 3, 1, 'ADADCF', '2021/12-13', 'Me quede dormido en teams y se me partio el hombro');
 INSERT INTO cita (citaEstadoID, citaDoctorID, citaPacienteID, citaBloqueHoraID, citaCodigoSeguimineto, citaFecha, citaMotivo) 
-                VALUES (1, 2, 2, 4, 'CCDDFF', '2021/12-13', 'Ya toy mejor');
+                VALUES (1, 2, 2, 4, 'CCDDFF', '2021/12-13', 'Ya toy mejor');    
+                INSERT INTO cita (citaEstadoID, citaDoctorID, citaPacienteID, citaBloqueHoraID, citaCodigoSeguimineto, citaFecha, citaMotivo) 
+                    VALUES (1, 2, 2, 4, 'CLKHJD', '2021/12/20', '...');
+                INSERT INTO cita (citaEstadoID, citaDoctorID, citaPacienteID, citaBloqueHoraID, citaCodigoSeguimineto, citaFecha, citaMotivo) 
+                    VALUES (1, 1, 1, 1, 'CPKHJD', '2021/12/20', '...');
+                INSERT INTO cita (citaEstadoID, citaDoctorID, citaPacienteID, citaBloqueHoraID, citaCodigoSeguimineto, citaFecha, citaMotivo) 
+                    VALUES (1, 2, 1, 8, 'CLJHJD', '2021/12/20', '...');
         ";
     }
 

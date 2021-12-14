@@ -19,7 +19,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6 d-none d-lg-block">
-            <img class="img-fluid" src="/media/home.png" alt="">
+            <img class="img-fluid" src="/media/home2.png" alt="">
         </div>
         <div class="col-lg-6 text-center m-auto">
             <div class="pb-5">

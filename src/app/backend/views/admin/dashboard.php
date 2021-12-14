@@ -560,7 +560,7 @@
                                         <h1 class="h5">
                                             Clinica
                                         </h1>
-                                        <select id="doctorEditModalDoctorClinica" class="selectpicker form-control" name="clinicaID" data-actions-box="true"></select>
+                                        <select id="doctorEditModalDoctorClinica" class="selectpicker form-control" name="clinicaID" title="---" data-actions-box="true"></select>
                                     </div>
                                 </div>
                                 <div class="row pb-3">

@@ -1,22 +1,26 @@
 <?php
 
-use Shield1739\UTP\CitasCss\app\Config;
+namespace Shield1739\UTP\CitasCss\tests;
+
 use Shield1739\UTP\CitasCss\core\Database;
 
-class init
+class db_init
 {
     private const UP = 'up';
     private const DOWN = 'down';
 
-    public $rootPath;
+    public string $rootPath;
     public Database $database;
+
+    private string $dbname;
 
     public function __construct($rootPath, array $config)
     {
         $this->rootPath = $rootPath;
-        $this->database = new Database($config['db']);
+        $this->database = new Database($config['initdb']);
         $pdo = Database::getPDO();
-        $pdo->exec('CREATE DATABASE IF NOT EXISTS '.$config['db']["name"].';USE '.$config['db']["name"].';');
+        $pdo->exec('CREATE DATABASE IF NOT EXISTS '.$config['initdb']["name"].';');
+        $this->dbname = $config['initdb']["name"];
     }
 
     public function runScriptsUp()
@@ -34,7 +38,7 @@ class init
         $this->log("!~ Inicia Corrida de Scripts");
 
         $newScripts = [];
-        $files = scandir($this->rootPath . '/database_init/scripts');
+        $files = scandir($this->rootPath . '/scripts');
 
         if ($method === self::UP)
         {
@@ -52,7 +56,7 @@ class init
                 continue;
             }
 
-            require_once $this->rootPath . '/database_init/scripts/' . $script;
+            require_once $this->rootPath . '/scripts/' . $script;
             $className = pathinfo($script, PATHINFO_FILENAME);
             $instance = new $className();
 
@@ -60,7 +64,7 @@ class init
             $query = $instance->$method();
             if (!is_null($query))
             {
-                $statement = Database::getPDO()->prepare($query);
+                $statement = Database::getPDO()->prepare("USE $this->dbname; ".$query);
                 $statement->execute();
             }
             $this->log("Script Terminado: $script");
@@ -72,33 +76,5 @@ class init
     private function log($message)
     {
         echo "[" . date("Y-m-d H:i:s") . "] - " . $message . PHP_EOL;
-    }
-}
-
-//Composer Autoload
-require_once __DIR__ . "/../vendor/autoload.php";
-
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__)."/src/");
-
-$init = new init(dirname(__DIR__), Config::getConfig($dotenv));
-
-if (isset($argc))
-{
-    if ($argv[1] === 'up' || $argc === 1)
-    {
-        $init->runScriptsUp();
-    }
-    elseif ($argv[1] === 'down')
-    {
-        $init->runScriptsDown();
-    }
-    elseif ($argv[1] === 'reset')
-    {
-        $init->runScriptsDown();
-        $init->runScriptsUp();
-    }
-    else
-    {
-        echo 'Error: Bad Input';
     }
 }

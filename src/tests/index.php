@@ -1,6 +1,0 @@
-<?php
-?>
-
-<div>
-    HOLA
-</div>

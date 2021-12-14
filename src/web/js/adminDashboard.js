@@ -182,6 +182,8 @@ function openDoctorModal(button)
                     oldTbody.parentNode.replaceChild(newTbody, oldTbody);
 
                     let especialidadSelect = $('#doctorEditModalDoctorEspecialidad');
+                    especialidadSelect.empty();
+
                     $.each(parsedData['allEspecialidades'], function (key, name)
                     {
                         especialidadSelect.append(new Option(name['especialidadNombre'], name['especialidadID']));
