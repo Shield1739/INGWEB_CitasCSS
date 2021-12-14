@@ -43,6 +43,7 @@ class UtilitiesTest extends TestCase
         assertEquals(1, Utilities::validateCedula("E-1234-12345"));
 
         assertEquals(0, Utilities::validateCedula(""));
+        assertEquals(0, Utilities::validateCedula("1"));
         assertEquals(0, Utilities::validateCedula("111"));
         assertEquals(0, Utilities::validateCedula("A"));
         assertEquals(0, Utilities::validateCedula("P-"));

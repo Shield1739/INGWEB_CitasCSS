@@ -70,7 +70,15 @@ class Utilities
             self::BOOK_AND_TOME,
             self::FULL_ID);
 
-        return preg_match($fullValid, $cedula);
+        if (preg_match($fullValid, $cedula, $matches) === 1)
+        {
+            if (isset($matches[1]))
+            {
+                return 1;
+            }
+        }
+
+        return 0;
     }
 
     #[ArrayShape(["start" => "string", "end" => "string"])] public static function rangeWorkWeek($datestr): array
