@@ -3,7 +3,7 @@
     "description": "UTP - Proyecto Semestral ING WEB",
     "autoload": {
         "psr-4": {
-            "Shield1739\\UTP\\CitasCss\\": "src/"
+            "Shield1739\\UTP\\CitasCss\\": "www/"
         }
     },
     "authors": [

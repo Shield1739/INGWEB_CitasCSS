@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  db:
+    image: mariadb
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+        - ./db/data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: sa
+      MYSQL_DATABASE: citascss
+      MYSQL_PASSWORD: sa
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8080:80'
+    restart: always
+    environment:
+      PMA_HOST: db
+    depends_on:
+      - db
+  php-apache-environment:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: php-apache
+    image: php:8.0-apache
+    volumes:
+      - ./database_init:/var/database_init
+      - ./www/web:/var/www/html
+      - ./www:/var/www
+      - ./tests:/var/tests
+      - ./vendor:/var/vendor
+      - ./composer.json:/var/composer.json
+      - ./composer.lock:/var/composer.lock
+    ports:
+      - "8000:80"
+    links:
+      - db
+    depends_on:
+      - db

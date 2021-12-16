@@ -11,12 +11,16 @@ class init
     public $rootPath;
     public Database $database;
 
+    private string $dbname;
+
     public function __construct($rootPath, array $config)
     {
+        $config['db']['dsn'] = $config['db']['initdsn'];
         $this->rootPath = $rootPath;
         $this->database = new Database($config['db']);
         $pdo = Database::getPDO();
-        $pdo->exec('CREATE DATABASE IF NOT EXISTS '.$config['db']["name"].';USE '.$config['db']["name"].';');
+        $pdo->exec('CREATE DATABASE IF NOT EXISTS '.$config['db']["name"].';');
+        $this->dbname = $config['db']["name"];
     }
 
     public function runScriptsUp()
@@ -45,7 +49,6 @@ class init
             $this->log("!~ Metodo: DOWN");
             $files = array_reverse($files);
         }
-
         foreach ($files as $script)
         {
             if ($script === '.' || $script === '..') {
@@ -60,7 +63,7 @@ class init
             $query = $instance->$method();
             if (!is_null($query))
             {
-                $statement = Database::getPDO()->prepare($query);
+                $statement = Database::getPDO()->prepare("USE $this->dbname; ".$query);
                 $statement->execute();
             }
             $this->log("Script Terminado: $script");
@@ -78,7 +81,7 @@ class init
 //Composer Autoload
 require_once __DIR__ . "/../vendor/autoload.php";
 
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__)."/src/");
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__)."/www/");
 
 $init = new init(dirname(__DIR__), Config::getConfig($dotenv));
 

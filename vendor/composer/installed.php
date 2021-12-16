@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'f5bc002c4b54cf8422e005d1eb8168184cc2ba3f',
+        'reference' => '612c28053b65f3ac921f0f4d78d5d439274b2519',
         'name' => 'shield1739/citas-css',
         'dev' => true,
     ),
@@ -325,7 +325,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'f5bc002c4b54cf8422e005d1eb8168184cc2ba3f',
+            'reference' => '612c28053b65f3ac921f0f4d78d5d439274b2519',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(

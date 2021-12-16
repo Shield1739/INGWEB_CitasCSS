@@ -74,7 +74,7 @@ class ComposerStaticInite8401e1697d4cf6fc20b57420e602a50
         ),
         'Shield1739\\UTP\\CitasCss\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/www',
         ),
         'Prophecy\\' => 
         array (
