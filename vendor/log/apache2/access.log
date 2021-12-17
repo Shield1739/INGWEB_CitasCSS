@@ -1,2 +1,0 @@
-172.19.0.1 - - [16/Dec/2021:12:11:00 +0000] "GET / HTTP/1.1" 200 536 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0"
-172.19.0.1 - - [16/Dec/2021:12:11:01 +0000] "GET / HTTP/1.1" 200 535 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0"
